@@ -9,7 +9,7 @@ def load_labels(filename="labels.txt"):
 
 @st.cache_resource
 def load_model():
-    interpreter = tf.lite.Interpreter(model_path="model/model.tflite")
+    interpreter = tf.lite.Interpreter(model_path="model.tflite")
     interpreter.allocate_tensors()
     return interpreter
 
@@ -43,4 +43,5 @@ if uploaded_file:
     labels = load_labels()
 
     label, confidence = predict(image, model, labels)
+
     st.success(f"Prediction: *{label}* ({confidence*100:.2f}% confidence)")
